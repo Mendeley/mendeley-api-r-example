@@ -18,3 +18,7 @@ The application is a simple command-line script that retrieves the number of Men
 5. Run the example:
 
 		source("mendeley.R")
+
+## Build status
+
+![Travis CI](https://travis-ci.org/Mendeley/mendeley-api-r-example.svg?branch=master)
