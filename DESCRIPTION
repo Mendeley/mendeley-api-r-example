@@ -1,4 +1,4 @@
-Package: mendeley-api-r-example
+Package: mendeleyapirexample
 Type: Package
 Title: An example of using the Mendeley API in R
 Version: 0.1-0
