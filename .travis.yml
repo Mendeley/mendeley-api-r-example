@@ -7,6 +7,7 @@ sudo: false
 install:
   - Rscript -e 'install.packages("optparse")'
   - Rscript -e 'install.packages("httr")'
+  - Rscript -e 'install.packages("httpuv")'
   - Rscript -e 'install.packages("rjson")'
   - Rscript -e 'install.packages("RCurl")'
   - Rscript -e 'install.packages("RColorBrewer")'
