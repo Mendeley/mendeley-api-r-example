@@ -1,16 +1,23 @@
 install.packages("httr")
 install.packages("rjson")
 install.packages("RCurl")
-install.packages("yaml")
 install.packages("RColorBrewer")
+install.packages("optparse")
 
 library(httr)
 library(rjson)
 library(RCurl)
-library(yaml)
 library(RColorBrewer)
+library(optparse)
 
-config <- yaml.load_file('config.yml')
+option_list <- list(
+  make_option(c("-d", "--doi"), action="store_true", help="DOI to search for")
+)
+parse_args(OptionParser(option_list = option_list))
+
+config = list()
+config$clientId = Sys.getenv("MENDELEY_CLIENT_ID")
+config$clientSecret = Sys.getenv("MENDELEY_CLIENT_SECRET")
 
 mendeley <- oauth_endpoint(base_url = 'https://api.mendeley.com/oauth', authorize = 'authorize', access = 'token')
 myapp <- oauth_app(appname = 'My app', key = config$clientId, secret = config$clientSecret)

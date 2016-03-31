@@ -6,4 +6,4 @@ sudo: false
 
 install: echo "No install step yet"
 
-script: Rscript mendeley.R
+script: Rscript mendeley.R --doi 10.1.1.105.1540
