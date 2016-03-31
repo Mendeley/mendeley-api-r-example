@@ -15,7 +15,7 @@ config$clientSecret <- Sys.getenv("MENDELEY_CLIENT_SECRET")
 
 mendeley <- oauth_endpoint(base_url = 'https://api.mendeley.com/oauth', authorize = 'authorize', access = 'token')
 myapp <- oauth_app(appname = 'My app', key = config$clientId, secret = config$clientSecret)
-token <- oauth2.0_token(mendeley, myapp, scope='all')
+token <- oauth2.0_token(mendeley, myapp, scope='all', use_basic_auth=TRUE)
 
 doi <- opt$doi 
 doc_rsp <- GET(paste('https://api.mendeley.com/catalog?view=stats&doi=', curlEscape(doi), sep=''), config(token = token))
