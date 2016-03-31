@@ -1,20 +1,28 @@
-library(httr)
-library(rjson)
-library(RCurl)
-library(RColorBrewer)
-library(optparse)
+require(httr)
+require(rjson)
+require(RCurl)
+require(RColorBrewer)
+require(optparse)
 
 option_list <- list(
   make_option(c("-d", "--doi"), action="store_true", help="DOI to search for")
 )
 opt = parse_args(OptionParser(option_list = option_list))
 
-secrets = list()
-secrets$clientId <- Sys.getenv("MENDELEY_CLIENT_ID")
-secrets$clientSecret <- Sys.getenv("MENDELEY_CLIENT_SECRET")
-mendeley <- oauth_endpoint(base_url = 'https://api.mendeley.com/oauth', authorize = 'authorize', access = 'token')
-scope <- "all"
-token <- oauth_service_token(mendeley, secrets, scope)
+clientId <- Sys.getenv("MENDELEY_CLIENT_ID")
+clientSecret <- Sys.getenv("MENDELEY_CLIENT_SECRET")
+
+secret = RCurl::base64(paste(clientId, clientSecret, sep = ":"))
+
+req = POST('https://api.mendeley.com/oauth/token',
+	   add_headers(
+		       'Authorization' = paste("Basic", secret),
+		       'Content-Type' = 'application/x-www-form-urlencoded'
+	   ),
+	   body = 'grant_type=client_credentials&scope=all'
+)
+
+token = paste("Bearer", content(req)$access_token)
 
 doi <- opt$doi 
 doc_rsp <- GET(paste('https://api.mendeley.com/catalog?view=stats&doi=', curlEscape(doi), sep=''), config(token = token))
