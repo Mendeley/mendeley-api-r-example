@@ -4,6 +4,6 @@ cache: packages
 
 sudo: false
 
-install: false
+install: echo "Not attempting to install dependencies yet"
 
-script: r -f mendeley.r
+script: Rscript mendeley.r
