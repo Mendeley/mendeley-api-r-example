@@ -4,6 +4,11 @@ cache: packages
 
 sudo: false
 
-install: echo "No install step yet"
+install:
+  - Rscript -e 'install.packages("optparse")'
+  - Rscript -e 'install.packages("httr")'
+  - Rscript -e 'install.packages("rjson")'
+  - Rscript -e 'install.packages("RCurl")'
+  - Rscript -e 'install.packages("RColorBrewer")'
 
 script: Rscript mendeley.R --doi 10.1.1.105.1540

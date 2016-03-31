@@ -1,9 +1,3 @@
-install.packages("httr")
-install.packages("rjson")
-install.packages("RCurl")
-install.packages("RColorBrewer")
-install.packages("optparse")
-
 library(httr)
 library(rjson)
 library(RCurl)
@@ -13,17 +7,17 @@ library(optparse)
 option_list <- list(
   make_option(c("-d", "--doi"), action="store_true", help="DOI to search for")
 )
-parse_args(OptionParser(option_list = option_list))
+opt = parse_args(OptionParser(option_list = option_list))
 
 config = list()
-config$clientId = Sys.getenv("MENDELEY_CLIENT_ID")
-config$clientSecret = Sys.getenv("MENDELEY_CLIENT_SECRET")
+config$clientId <- Sys.getenv("MENDELEY_CLIENT_ID")
+config$clientSecret <- Sys.getenv("MENDELEY_CLIENT_SECRET")
 
 mendeley <- oauth_endpoint(base_url = 'https://api.mendeley.com/oauth', authorize = 'authorize', access = 'token')
 myapp <- oauth_app(appname = 'My app', key = config$clientId, secret = config$clientSecret)
 token <- oauth2.0_token(mendeley, myapp, scope='all')
 
-doi <- readline('Enter a DOI: ')
+doi <- opt$doi 
 doc_rsp <- GET(paste('https://api.mendeley.com/catalog?view=stats&doi=', curlEscape(doi), sep=''), config(token = token))
 docs <- fromJSON(rawToChar(content(doc_rsp)))
 
