@@ -3,3 +3,7 @@ language: r
 cache: packages
 
 sudo: false
+
+install: false
+
+script: r -f mendeley.r
