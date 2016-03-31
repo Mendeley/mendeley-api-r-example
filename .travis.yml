@@ -6,4 +6,4 @@ sudo: false
 
 install: echo "Not attempting to install dependencies yet"
 
-script: Rscript mendeley.r
+script: Rscript mendeley.R
