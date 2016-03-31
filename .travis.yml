@@ -4,6 +4,6 @@ cache: packages
 
 sudo: false
 
-install: Rscript -e 'install.packages("packrat")'
+install: echo "No install step yet"
 
 script: Rscript mendeley.R

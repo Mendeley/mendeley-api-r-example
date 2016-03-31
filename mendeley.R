@@ -1,3 +1,9 @@
+install.packages("httr")
+install.packages("rjson")
+install.packages("RCurl")
+install.packages("yaml")
+install.packages("RColorBrewer")
+
 library(httr)
 library(rjson)
 library(RCurl)
