@@ -14,8 +14,9 @@ Register your client at the [developer portal](http://dev.mendeley.com).  This w
 
 1. Install [R](http://www.r-project.org/).
 2. In a shell, or in Rstudio, set the MENDELEY_CLIENT_ID and MENDELEY_CLIENT_SECRET environment variables to the values you just got from the developer portal.
-3. Think of a DOI you would like to search for.
-4. Run the script, passing the DOI in as a command line argument. You can do that like this:
+3. Install the dependencies declared at the top of the script.
+4. Think of a DOI you would like to search for.
+5. Run the script, passing the DOI in as a command line argument. You can do that like this:
 
         Rscript mendeley.R --doi 10.1.1.105.1540
 
